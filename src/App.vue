@@ -14,6 +14,10 @@ export default {
   name: 'App',
   components: {
     heading
+  },
+  created () {
+    this.$store.dispatch('LOGIN')
+    this.$store.dispatch('GET_KARIGOR')
   }
 }
 </script>

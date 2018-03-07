@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import Karigor from './Karigor'
+import Karigor from './modules/Karigor'
+import Auth from './modules/Auth'
+import Card from './modules/Card'
 
 Vue.use(Vuex)
 
@@ -13,7 +15,9 @@ const getters = {
 const mutations = {}
 const actions = {}
 const modules = {
-  Karigor
+  Karigor,
+  Auth,
+  Card
 }
 
 const store = new Vuex.Store({

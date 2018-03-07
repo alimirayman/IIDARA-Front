@@ -27,9 +27,9 @@
             </div>
           </div>
           <div class="card-footer text-white d-flex flex-row justify-content-between">
-            <input type="file" ref="fileSelect" class="d-none">
+            <input type="file" ref="fileSelect" @change="fileOnChange" class="d-none">
             <div class="btn bg-dark" @click="$refs.fileSelect.click()">Upload Image</div>
-            <div class="btn bg-dark">Add Card</div>
+            <div class="btn bg-dark" @click="addCard">Add Card</div>
           </div>
         </div>
       </div>
@@ -49,13 +49,22 @@ export default {
         assigned_to: '0',
         attocation_time: '',
         images: []
-      }
+      },
+      selectedFile: null
     }
   },
   computed: {
     ...mapGetters([
       'karigor'
     ])
+  },
+  methods: {
+    fileOnChange (event) {
+      this.selectedFile = event.targer.files
+    },
+    addCard () {
+      this.$store.dispatch('POST_CARD', this.form)
+    }
   }
 }
 </script>
