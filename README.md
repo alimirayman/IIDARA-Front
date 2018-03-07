@@ -1,6 +1,6 @@
 # iidara
 
-> Team Mma[anagementApp[ament
+> Team Management App
 
 ## Build Setup
 
