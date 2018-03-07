@@ -20,4 +20,10 @@ export default {
 
 <style>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css');
+.btn{
+  border-radius: 0;
+}
+.bg-dark{
+  background-color: #444 !important;
+}
 </style>

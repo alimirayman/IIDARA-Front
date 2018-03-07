@@ -1,13 +1,20 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import Karigor from './Karigor'
 
 Vue.use(Vuex)
 
-const state = {}
-const getters = {}
+const state = {
+  data: 'google'
+}
+const getters = {
+  getData (state) { return state.data }
+}
 const mutations = {}
 const actions = {}
-const modules = {}
+const modules = {
+  Karigor
+}
 
 const store = new Vuex.Store({
   state,

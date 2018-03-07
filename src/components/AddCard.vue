@@ -27,7 +27,8 @@
             </div>
           </div>
           <div class="card-footer text-white d-flex flex-row justify-content-between">
-            <div class="btn bg-dark">Upload Image</div>
+            <input type="file" ref="fileSelect" class="d-none">
+            <div class="btn bg-dark" @click="$refs.fileSelect.click()">Upload Image</div>
             <div class="btn bg-dark">Add Card</div>
           </div>
         </div>
@@ -37,6 +38,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   data () {
     return {
@@ -46,28 +49,13 @@ export default {
         assigned_to: '0',
         attocation_time: '',
         images: []
-      },
-      karigor: [
-        {
-          address: 'Mohakhali',
-          avatar: null,
-          email: 'tahmid@karigor.io',
-          id: 1,
-          name: 'Tahmid Choyon',
-          phone: '01741778025',
-          role: 'karigor'
-        },
-        {
-          address: 'Uttara',
-          avatar: null,
-          email: 'ayman@karigor.io',
-          id: 2,
-          name: 'Mir Ayman Ali',
-          phone: '017xxxxxxxx',
-          role: 'karigor'
-        }
-      ]
+      }
     }
+  },
+  computed: {
+    ...mapGetters([
+      'karigor'
+    ])
   }
 }
 </script>
@@ -88,6 +76,6 @@ export default {
     color: #444;
   }
   .card{
-    /* border-radius: 0; */
+    border-radius: 2px;
   }
 </style>

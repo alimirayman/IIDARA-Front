@@ -5,16 +5,10 @@ const version = '1'
 const api = `${root}:${port}/v${version}/`
 
 // Auth
-const login = api + 'login'
+export const login = api + 'login'
 
 // Card
-const card = api + 'card'
+export const card = api + 'card'
 
 // Karigor
-const karigor = api + 'karigor'
-
-export default {
-  login,
-  card,
-  karigor
-}
+export const karigor = api + 'karigor'
