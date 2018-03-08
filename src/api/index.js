@@ -14,4 +14,4 @@ export const CARD = api + 'card'
 export const KARIGOR = api + 'karigor'
 
 // Uploader
-export const UPLOAD_IMG = 'http://159.89.38.56:5202/upload'
+export const UPLOAD_FILE = 'http://159.89.38.56:9000/upload'
