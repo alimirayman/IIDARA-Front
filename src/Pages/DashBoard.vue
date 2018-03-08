@@ -9,6 +9,9 @@ import addCard from '@/components/AddCard'
 export default {
   components: {
     addCard
+  },
+  created () {
+    this.$store.dispatch('GET_CARDS')
   }
 }
 </script>

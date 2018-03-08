@@ -10,7 +10,7 @@
                 <input type="text" class="form-control form-control-lg" id="form.title" aria-describedby="form.title" placeholder="Card Title" v-model="form.title" >
               </div>
               <div class="col-sm-4 mt-3">
-                <input type="text" class="form-control form-control-sm text-right" id="form.allocation_time" aria-describedby="form.allocation_time" placeholder="Card Allocation Time" v-model="form.allocation_time" >
+                <input type="text" class="form-control form-control-sm text-right" id="form.allocation_time" aria-describedby="form.allocation_time" placeholder="Allocated Time" v-model="form.allocated_time" >
               </div>
             </div>
             <div class="card-text p-1">
@@ -19,7 +19,7 @@
             </div>
             <div class="card-text">
               <small class="text-muted">
-                <select class="form-control" id="form.assigned_To" aria-describedby="form.assigned To" placeholder="Card Assigned To" v-model="form.assigned_to">
+                <select class="form-control" id="form.assigned_To" aria-describedby="form.assigned To" placeholder="Card Assigned To" v-model="form.karigor_id">
                   <option value="0">Card Assigned To</option>
                   <option v-for="k in karigor" :key="k.id" :value="k.id">{{k.name}}</option>
                 </select>
@@ -46,8 +46,8 @@ export default {
       form: {
         title: '',
         description: '',
-        assigned_to: '0',
-        attocation_time: '',
+        karigor_id: '0',
+        attocated_time: '',
         images: []
       },
       selectedFile: null
@@ -60,7 +60,11 @@ export default {
   },
   methods: {
     fileOnChange (event) {
-      this.selectedFile = event.targer.files
+      this.selectedFile = event.target.files[0]
+      console.log(this.selectedFile)
+      const fd = new FormData()
+      fd.append('file', this.selectedFile, this.selectedFile.name)
+      this.$store.dispatch('UPLOAD_CARD_FILE', fd)
     },
     addCard () {
       this.$store.dispatch('POST_CARD', this.form)

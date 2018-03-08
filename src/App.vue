@@ -15,9 +15,14 @@ export default {
   components: {
     heading
   },
+  methods: {
+    async testBenchMock () {
+      await this.$store.dispatch('LOGIN')
+      await this.$store.dispatch('GET_KARIGOR')
+    }
+  },
   created () {
-    this.$store.dispatch('LOGIN')
-    this.$store.dispatch('GET_KARIGOR')
+    this.testBenchMock()
   }
 }
 </script>
