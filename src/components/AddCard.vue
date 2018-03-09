@@ -25,18 +25,18 @@
                 </select>
               </small>
             </div>
-            <div class="card-text px-3 pt-3" v-if="images.length">
+            <div class="card-text px-3 pt-3" v-if="form.images64.length">
               <p>Images</p>
               <div class="row">
-                <a :href="form.images[key]" class="col-4 pb-3" v-for="(image, key) in images" :key="key">
+                <a :href="form.images[key]" class="col-4 pb-3" target="_blank" v-for="(image, key) in form.images64" :key="key">
                   <img :src="image" class="img-fluid rounded ">
                 </a>
               </div>
             </div>
-            <div class="card-text px-3 pt-3" v-if="files.length">
+            <div class="card-text px-3 pt-3" v-if="form.attachments.length">
               <p>Files</p>
               <div class="row">
-                <a :href="files[key]" class="col-4 pb-3" v-for="(f, key) in files" :key="key">
+                <a :href="f" class="col-4 pb-3" target="_blank" v-for="(f, key) in form.attachments" :key="key">
                   <div class="file flex-column text-center d-flex justify-content-center border rounded"> File {{ key+1 }}</div>
                 </a>
               </div>
@@ -74,12 +74,11 @@
 <script>
 import { mapGetters } from 'vuex'
 import Vibrant from 'node-vibrant'
+import image from '@/helpers/image'
 
 export default {
   data () {
     return {
-      images: [],
-      files: [],
       selectedFile: null,
       selectedFileColor: '',
       showImage: false
@@ -94,18 +93,15 @@ export default {
   },
   methods: {
     changeSelected (id) {
-      this.selectedFile = this.images[id]
+      this.selectedFile = this.forms.images64[id]
     },
-    previewImage (file) {
-      let vm = this
-      let reader = new FileReader()
-      reader.readAsDataURL(file)
-      reader.onload = function () {
-        if (~reader.result.indexOf('image')) {
-          let v = new Vibrant(reader.result)
+    preview (file) {
+      image.toBase64(file, (file64) => {
+        let vm = this
+        if (image.isImageFile(file64)) {
+          let v = new Vibrant(file64)
           v.getPalette()
             .then(palette => {
-              console.log(palette)
               if (palette.Muted) {
                 vm.selectedFileColor = palette.Muted.getHex()
               } else if (palette.LightMuted) {
@@ -114,23 +110,15 @@ export default {
                 vm.selectedFileColor = palette.DarkVibrant.getHex()
               }
             })
-          vm.images.push(reader.result)
-          vm.selectedFile = reader.result
+          vm.selectedFile = file64
           vm.showImage = true
-        } else {
-          vm.files.push(reader.result)
         }
-      }
-      reader.onerror = function (error) {
-        console.log('Error: ', error)
-      }
+      })
     },
     async fileOnChange (event) {
       let file = event.target.files[0]
-      const fd = new FormData()
-      fd.append('file', file, file.name)
-      await this.$store.dispatch('UPLOAD_CARD_FILE', fd)
-      this.previewImage(file, this)
+      await this.$store.dispatch('UPLOAD_CARD_FILE', file)
+      this.preview(file)
     },
     addCard () {
       this.$store.dispatch('POST_CARD', this.form)

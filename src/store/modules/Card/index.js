@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { CARD, UPLOAD_FILE } from '@/api'
+import image from '@/helpers/image'
 
 axios.interceptors.request.use(config => {
   config.headers.authorization = 'Bearer ' + localStorage.getItem('token')
@@ -11,7 +12,14 @@ axios.interceptors.request.use(config => {
 const state = {
   cards: [],
   newCard: {
-    images: []
+    title: '',
+    description: '',
+    karigor_id: '0',
+    attocated_time: '',
+    images: [],
+    images64: [],
+    attachments: [],
+    files64: []
   },
   status: [
     'NOT_OCCUPIED',
@@ -25,7 +33,18 @@ const state = {
 }
 const getters = {
   cards: state => state.cards,
-  userCard (state) {
+  newCard: state => state.newCard,
+  uploadCard ({newCard}) {
+    return {
+      title: newCard.title,
+      description: newCard.description,
+      karigor_id: newCard.karigor_id,
+      attocated_time: newCard.allocated_time,
+      images: newCard.images,
+      attachments: newCard.attachments
+    }
+  },
+  userCards (state) {
     return (id) => {
       return state.cards.filter(el => el.karigor_id === id)
     }
@@ -50,16 +69,26 @@ const mutations = {
   addCard (state, payload) {
     state.cards.push(payload)
   },
-  addImage (state, payload) {
-    state.newCard.images.push(payload.s3_url)
+  addImage (state, {image, image64}) {
+    state.newCard.images.push(image.s3_url)
+    state.newCard.images64.push(image64)
+  },
+  addAttachment (state, {data}) {
+    state.newCard.attachments.push(data.s3_url)
+    // state.newCard.files64.push(file64)
   },
   uploading (state, payload) {
     state.uploaded = payload
   }
 }
 const actions = {
-  async GET_CARDS ({commit}) {
-    let {data} = await axios.get(CARD)
+  async GET_CARDS ({commit}, payload = 0) {
+    let config = {
+      params: {
+        status: payload
+      }
+    }
+    let {data} = await axios.get(CARD, config)
     commit('setCards', data)
   },
   async POST_CARD ({commit, state}, payload) {
@@ -71,16 +100,26 @@ const actions = {
       console.log(err)
     }
   },
-  async UPLOAD_CARD_FILE ({commit}, payload) {
+  async UPLOAD_CARD_FILE ({commit}, file) {
     let config = {
       onUploadProgress (progressEvent) {
         let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
         commit('uploading', percentCompleted)
       }
     }
+    const fd = new FormData()
+    fd.append('file', file, file.name)
     try {
-      let { data } = await axios.post(UPLOAD_FILE, payload, config)
-      commit('addImage', data)
+      let { data } = await axios.post(UPLOAD_FILE, fd, config)
+      image.toBase64(file, (file64) => {
+        if (image.isImageFile(file64)) {
+          commit('addImage', {image: data, image64: file64})
+          commit('uploading', 0)
+        } else {
+          commit('addAttachment', {data})
+          commit('uploading', 0)
+        }
+      })
     } catch (err) {
       console.log(err)
     }
