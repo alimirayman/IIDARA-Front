@@ -12,6 +12,7 @@ export const CARD = api + 'card'
 
 // Karigor
 export const KARIGOR = api + 'karigor'
+export const KARIGOR_USER = (user) => `${KARIGOR}/${user}`
 
 // Uploader
 export const UPLOAD_FILE = 'http://159.89.38.56:9000/upload'
