@@ -9,10 +9,20 @@ axios.interceptors.request.use(config => {
 })
 
 const state = {
-  karigor: []
+  karigor: [
+    {
+      name: 'Mir Ayman Ali',
+      id: 1,
+      email: 'ayman@karigor.io',
+      phone: '01761767447',
+      role: 'Karigor',
+      avatar: ''
+    }
+  ]
 }
 const getters = {
-  karigor: state => state.karigor
+  karigor: state => state.karigor,
+  karigorInd: (state) => (id) => state.karigor.find(el => el.id === id)
 }
 const mutations = {
   setKarigor (state, payload) {
