@@ -10,13 +10,14 @@
 
 <style scoped>
   @import url('https://fonts.googleapis.com/css?family=Poiret+One');
-
   h1{
     font-family: 'Poiret One', cursive;
     font-size: 60px
   }
   header{
-    background: #eee;
+    background-color: #eee;
+    background-image: url('../assets/pattern.png');
+    background-size: 400px
   }
   .logo{
     background: #444;
