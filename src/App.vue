@@ -29,10 +29,24 @@ export default {
 
 <style>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css');
+/* @import url('https://fonts.googleapis.com/icon?family=Material+Icons'); */
+
 .btn{
   border-radius: 0;
 }
+.btn:focus{
+  box-shadow: none;
+}
 .bg-dark{
   background-color: #444 !important;
+}
+.shadow-inset{
+  box-shadow: 0px -8px 16px -12px #444 inset;
+}
+.shadow-small{
+  box-shadow: 0px 4px 14px -8px;
+}
+.shadow-large{
+    box-shadow: 0px 8px 24px -12px;
 }
 </style>
