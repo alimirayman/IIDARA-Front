@@ -3,7 +3,7 @@
     <div class="card shadow-small bg-light border-0 mb-5">
       <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
       <ul class="list-group list-group-flush">
-        <li class="list-group-item shadow-inset" v-for="card in cards" :key="card.id">
+        <li class="list-group-item" v-for="card in cards" :key="card.id">
           {{ card.title }} ({{ card.allocated_time }})
         </li>
       </ul>
@@ -39,5 +39,36 @@ export default {
 img{
   border-radius: 50% !important;
   max-height: 50px;
+}
+li{
+  position: relative;
+  margin: 10px 10px 0;
+  border: 0;
+  background: #eee;
+  /* padding-bottom: 0; */
+  transition: all 0.3s ease-out;
+  transform-origin: bottom;
+  cursor: pointer;
+}
+li:hover{
+  padding-bottom: 30px;
+  /* transform: translateY(-30px); */
+}
+li:hover::after{
+  /* transform: translateY(30px); */
+}
+li::after{
+  content: "";
+  height: 20px;
+  width: calc(100% + 20px);
+  border-top: 1px solid rgba(0,0,0,0.125);
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  position: absolute;
+  bottom: -20px;
+  left: -10px;
+  box-shadow: 0px -8px 16px -8px rgba(0,0,0,0.36);
+  transition: all 0.3s ease-out;
+  transform-origin: bottom;
 }
 </style>

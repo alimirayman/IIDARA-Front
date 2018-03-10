@@ -47,6 +47,6 @@ export default {
   box-shadow: 0px 4px 14px -8px;
 }
 .shadow-large{
-    box-shadow: 0px 8px 24px -12px;
+    box-shadow: 0px 6px 24px -12px;
 }
 </style>
