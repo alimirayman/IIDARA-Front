@@ -21,7 +21,7 @@ export default {
       await this.$store.dispatch('GET_KARIGOR')
     }
   },
-  created () {
+  mounted () {
     this.testBenchMock()
   }
 }
@@ -47,6 +47,9 @@ export default {
   box-shadow: 0px 4px 14px -8px;
 }
 .shadow-large{
-    box-shadow: 0px 6px 24px -12px;
+  box-shadow: 0px 6px 24px -12px;
+}
+img.circle{
+  border-radius: 50%;
 }
 </style>

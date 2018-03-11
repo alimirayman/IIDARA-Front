@@ -13,16 +13,18 @@ const state = {
     {
       name: 'Mir Ayman Ali',
       id: 1,
+      username: 'ayman',
       email: 'ayman@karigor.io',
       phone: '01761767447',
       role: 'Karigor',
-      avatar: ''
+      avatar: 'http://www.gravatar.com/avatar/30800f66cd6b5b4e01cf1234404118ff?s=181'
     }
   ]
 }
 const getters = {
   karigor: state => state.karigor,
-  karigorInd: (state) => (id) => state.karigor.find(el => el.id === id)
+  karigorByUsername: (state) => (username) => state.karigor.find(el => el.username === username),
+  karigorByID: (state) => (id) => state.karigor.find(el => el.id === id)
 }
 const mutations = {
   setKarigor (state, payload) {

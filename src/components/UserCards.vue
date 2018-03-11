@@ -9,7 +9,7 @@
       </ul>
       <div class="card-body row">
         <div class="col-sm-4 text-center">
-          <img :src="karigor.avatar" class="img-fluid" :alt="karigor.name">
+          <img :src="karigor.avatar" class="img-fluid circle" :alt="karigor.name">
         </div>
         <div class="col-sm-8">
           <h5 class="card-title">{{ karigor.name }}</h5>
@@ -21,15 +21,19 @@
 </template>
 
 <script>
-// import {mapGetters} from 'vuex'
+import {mapGetters} from 'vuex'
 export default {
   props: ['id'],
   computed: {
+    ...mapGetters({
+      userCards: 'userCards',
+      karigorByID: 'karigorByID'
+    }),
     cards () {
-      return this.$store.getters.userCards(this.id)
+      return this.userCards(this.id) || {}
     },
     karigor () {
-      return this.$store.getters.karigorInd(this.id)
+      return this.karigorByID(this.id) || {}
     }
   }
 }
@@ -37,7 +41,6 @@ export default {
 
 <style scoped>
 img{
-  border-radius: 50% !important;
   max-height: 50px;
 }
 li{

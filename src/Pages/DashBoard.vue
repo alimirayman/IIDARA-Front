@@ -4,6 +4,7 @@
     <section>
       <addCard></addCard>
     </section>
+    <!-- User Cards -->
     <section>
       <div class="display-3 text-center mb-4">Karigor</div>
       <div class="row">

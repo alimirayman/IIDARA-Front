@@ -1,8 +1,15 @@
 <template>
   <div>
-    <header class="d-flex flex-row justify-content-center">
-      <div class="logo px-5">
-        <h1>iidara</h1>
+    <header>
+      <div class="container">
+        <div class="d-flex justify-content-between">
+          <div class="blackBox px-5">
+            <h1>iidara</h1>
+          </div>
+          <div class="blackBox px-5">
+            <img src="" alt="">
+          </div>
+        </div>
       </div>
     </header>
   </div>
@@ -10,8 +17,10 @@
 
 <style scoped>
   @import url('https://fonts.googleapis.com/css?family=Poiret+One');
-  h1{
+  header{
     font-family: 'Poiret One', cursive;
+  }
+  h1{
     font-size: 60px
   }
   header{
@@ -19,7 +28,8 @@
     background-image: url('../assets/pattern.png');
     background-size: 400px
   }
-  .logo{
+  .blackBox{
+    /* display: inline-block; */
     background: #444;
     color: #fff;
   }
