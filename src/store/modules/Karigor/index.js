@@ -1,12 +1,5 @@
-import axios from 'axios'
+import axios from '@/helpers/axios'
 import { KARIGOR } from '@/api'
-
-axios.interceptors.request.use(config => {
-  config.headers.authorization = 'Bearer ' + localStorage.getItem('token')
-  return config
-}, error => {
-  return Promise.reject(error)
-})
 
 const state = {
   karigor: [
