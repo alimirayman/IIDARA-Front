@@ -87,7 +87,7 @@ const mutations = {
   }
 }
 const actions = {
-  async GET_CARDS ({commit}, payload = 0) {
+  async GET_CARDS ({commit}, payload = [0]) {
     let config = {
       params: {
         status: payload

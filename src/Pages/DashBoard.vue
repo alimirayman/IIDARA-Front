@@ -31,7 +31,7 @@ export default {
     userCardGroup
   },
   created () {
-    this.$store.dispatch('GET_CARDS', 1)
+    this.$store.dispatch('GET_CARDS', [2, 3, 4])
   }
 }
 </script>
