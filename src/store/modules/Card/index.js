@@ -1,9 +1,10 @@
 import axios from '@/helpers/axios'
 import { CARD, UPLOAD_FILE } from '@/api'
 import image from '@/helpers/image'
+import {cards} from './cards'
 
 const state = {
-  cards: [],
+  cards: cards,
   newCard: {
     title: '',
     description: '',
