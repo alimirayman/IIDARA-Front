@@ -31,6 +31,10 @@ export default {
 @import url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css');
 /* @import url('https://fonts.googleapis.com/icon?family=Material+Icons'); */
 
+#app{
+  --primary: #444;
+}
+
 .btn{
   border-radius: 0;
 }
@@ -51,5 +55,28 @@ export default {
 }
 img.circle{
   border-radius: 50%;
+}
+.pointer{
+  cursor: pointer;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+.swipe-down-enter-active, .swipe-down-leave-active {
+  /* z-index: 1000; */
+  /* perspective: 1000px; */
+  transform-origin: top;
+  transform: rotateX(0deg);
+  /* transition: all .3s; */
+}
+.swipe-down-enter, .swipe-down-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  transform: rotateX(-90deg);
+  /* perspective: 1000px; */
+  transform-origin: top;
+  opacity: 0.6;
+  /* z-index: 0; */
 }
 </style>

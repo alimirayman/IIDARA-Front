@@ -3,11 +3,28 @@
     <header>
       <div class="container">
         <div class="d-flex justify-content-between">
-          <div class="blackBox px-5">
+          <router-link tag="div" to="/" class="blackBox px-5 font-poiret pointer">
             <h1>iidara</h1>
-          </div>
-          <div class="blackBox px-5">
-            <img src="" alt="">
+          </router-link>
+          <div class="blackBox dropdown" @click="menu = !menu">
+            <div class="px-3 d-flex font-poiret pointer">
+              <img :src="user.avater" class="img-fluid circle my-2" alt="">
+              <div class=" ml-2 mt-3">
+                {{ user.name }} <br>
+                {{ user.role }}
+              </div>
+            </div>
+            <transition name="swipe-down">
+              <div class="dropdown-menu bg-light" v-if="menu">
+                <router-link
+                  :to="`/p/${user.username}`"
+                  class="dropdown-item"
+                  >Profile</router-link>
+                <a class="dropdown-item" href="#">Start Working</a>
+                <!-- <div class="dropdown-divider"></div> -->
+                <a class="dropdown-item text-red" href="#">Logout</a>
+              </div>
+            </transition>
           </div>
         </div>
       </div>
@@ -15,22 +32,67 @@
   </div>
 </template>
 
+<script>
+import {mapGetters} from 'vuex'
+export default {
+  data () {
+    return {
+      menu: false
+    }
+  },
+  computed: {
+    ...mapGetters({
+      user: 'user'
+    })
+  }
+}
+</script>
+
 <style scoped>
   @import url('https://fonts.googleapis.com/css?family=Poiret+One');
-  header{
+  .font-poiret{
     font-family: 'Poiret One', cursive;
   }
   h1{
     font-size: 60px
   }
   header{
+    position: relative;
+    z-index: 5000;
     background-color: #eee;
-    background-image: url('../assets/pattern.png');
+    background-image: url('../assets/pattern_v2.png');
     background-size: 400px
   }
   .blackBox{
     /* display: inline-block; */
     background: #444;
     color: #fff;
+  }
+  img{
+    height: 60px;
+  }
+  .dropdown{
+    perspective: 50em
+  }
+  .dropdown-menu{
+    padding: 0 0;
+    display: block;
+    right: 0;
+    border-radius: 0;
+    border-width: 2px;
+    border-color: var(--primary);
+    transition: all 0.3s ease-in-out;
+  }
+  .dropdown-divider{
+    border-color: var(--primary)
+  }
+  .dropdown-item.active, .dropdown-item:active {
+    background: var(--primary)
+  }
+  .dropdown-item:first-child{
+    padding-top: 0.5rem;
+  }
+  .dropdown-item:last-child{
+    padding-bottom: 0.5rem;
   }
 </style>
