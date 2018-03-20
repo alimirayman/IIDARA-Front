@@ -8,8 +8,8 @@
     </section>
     <!-- User Cards -->
     <section class="row">
-      <div class="col-lg-4 col-md-6">
-        <singleCard></singleCard>
+      <div class="col-lg-4 col-md-6" v-for="card in cards" :key="card.id">
+        <singleCard :id="card.id"></singleCard>
       </div>
     </section>
   </div>
@@ -18,8 +18,19 @@
 <script>
 import userProfile from '@/components/UserProfile'
 import singleCard from '@/components/SingleCard'
+import {mapGetters} from 'vuex'
+
 export default {
   props: ['username'],
+  computed: {
+    ...mapGetters([
+      'getCardsById',
+      'karigorByUsername'
+    ]),
+    cards () {
+      return this.getCardsById(this.karigorByUsername(this.username).id)
+    }
+  },
   components: {
     userProfile,
     singleCard

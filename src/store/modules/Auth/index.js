@@ -3,7 +3,7 @@ import { LOGIN } from '@/api'
 
 const state = {
   user: {
-    email: 'admin@karigor.io',
+    email: 'ayman@karigor.io',
     password: '123456',
     name: 'Mir Ayman Ali',
     username: 'ayman',

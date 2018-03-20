@@ -38,9 +38,14 @@ const getters = {
       attachments: newCard.attachments
     }
   },
-  userCards (state) {
+  getCardsById (state) {
     return (id) => {
       return state.cards.filter(el => el.karigor_id === id)
+    }
+  },
+  getCardsByUsername (state) {
+    return (username) => {
+      return state.cards.filter(el => el.username === username)
     }
   },
   getCardStatus (state) {
@@ -97,10 +102,10 @@ const actions = {
     let {data} = await axios.get(CARD, config)
     commit('setCards', data)
   },
-  async POST_CARD ({commit, state}, payload) {
+  async POST_CARD ({commit, getters}, payload) {
     commit('structNewCard', payload)
     try {
-      let {data} = await axios.post(CARD, state.newCard)
+      let { data } = await axios.post(CARD, getters.uploadCard)
       commit('addCard', data)
       commit('resetNewCard')
     } catch (err) {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header>
+    <header class="shadow-inset">
       <div class="container">
         <div class="d-flex justify-content-between">
           <router-link tag="div" to="/" class="blackBox px-5 font-poiret pointer">
@@ -59,7 +59,8 @@ export default {
   header{
     position: relative;
     z-index: 5000;
-    background-color: #eee;
+    background-color: rgba(255,255,255,0.3);
+    background-blend-mode: overlay;
     background-image: url('../assets/pattern_v2.png');
     background-size: 400px
   }

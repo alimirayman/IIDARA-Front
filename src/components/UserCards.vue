@@ -23,14 +23,19 @@
 <script>
 import {mapGetters} from 'vuex'
 export default {
-  props: ['id'],
+  props: {
+    id: {
+      type: Number,
+      required: true
+    }
+  },
   computed: {
-    ...mapGetters({
-      userCards: 'userCards',
-      karigorByID: 'karigorByID'
-    }),
+    ...mapGetters([
+      'getCardsById',
+      'karigorByID'
+    ]),
     cards () {
-      return this.userCards(this.id) || {}
+      return this.getCardsById(this.id) || {}
     },
     karigor () {
       return this.karigorByID(this.id) || {}
