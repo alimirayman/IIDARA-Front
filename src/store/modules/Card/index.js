@@ -9,7 +9,7 @@ const state = {
     title: '',
     description: '',
     karigor_id: '0',
-    attocated_time: '',
+    allocated_time: '',
     images: [],
     images64: [],
     attachments: [],
@@ -33,7 +33,7 @@ const getters = {
       title: newCard.title,
       description: newCard.description,
       karigor_id: newCard.karigor_id,
-      attocated_time: newCard.allocated_time,
+      allocated_time: newCard.allocated_time,
       images: newCard.images,
       attachments: newCard.attachments
     }
