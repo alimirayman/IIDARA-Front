@@ -1,6 +1,6 @@
 // const root = 'http://27.147.185.112'
 // const port = '5205'
-const root = 'http://localhost'
+const root = 'http://103.230.6.198'
 const port = '8005'
 const version = '1'
 
