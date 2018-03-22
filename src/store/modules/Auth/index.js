@@ -26,7 +26,7 @@ const mutations = {
 }
 const actions = {
   async LOGIN ({commit, getters}, payload) {
-    let { data } = await axios.post(LOGIN, payload = getters.user)
+    let { data } = await axios.post(LOGIN, payload)
     commit('login', data)
     console.log(data)
   }
