@@ -2,7 +2,7 @@
   <div class="form-container">
     <div class="display-4 mb-4 login-title">Login</div>
     <div class="col-6 form">
-      <div class="card shadow-large p-5">
+      <div class="card shadow-large p-5 bg-light">
         <form>
           <div class="form-group">
               <input v-model="form.email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
@@ -10,7 +10,7 @@
           <div class="form-group">
               <input v-model="form.password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
           </div>
-          <button type="submit" class="btn mt-2">Submit</button>
+          <button @click="submit" class="btn mt-2">Submit</button>
         </form>
       </div>
     </div>
@@ -27,7 +27,7 @@ export default {
       }
     }
   },
-  method: {
+  methods: {
     submit () {
       this.$store.dispatch('LOGIN', this.form)
     }

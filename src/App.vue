@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     async testBenchMock () {
-      await this.$store.dispatch('LOGIN')
+      // await this.$store.dispatch('LOGIN')
       await this.$store.dispatch('GET_KARIGOR')
     }
   },
