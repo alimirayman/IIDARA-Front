@@ -28,6 +28,7 @@ const actions = {
   async LOGIN ({commit, getters}, payload) {
     let { data } = await axios.post(LOGIN, payload = getters.user)
     commit('login', data)
+    console.log(data)
   }
 }
 
