@@ -29,9 +29,6 @@ export default {
   components: {
     addCard,
     userCardGroup
-  },
-  created () {
-    this.$store.dispatch('GET_CARDS', [0, 1, 2])
   }
 }
 </script>

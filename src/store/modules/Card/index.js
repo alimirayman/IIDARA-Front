@@ -1,10 +1,9 @@
 import axios from '@/helpers/axios'
 import { CARD, UPLOAD_FILE } from '@/api'
 import image from '@/helpers/image'
-import {cards} from './cards'
 
 const state = {
-  cards: cards,
+  cards: [],
   newCard: {
     title: '',
     description: '',
@@ -27,6 +26,13 @@ const state = {
 }
 const getters = {
   cards: state => state.cards,
+  card (state) {
+    return (id) => {
+      return state.cards.find(el => {
+        return el.id === id
+      })
+    }
+  },
   newCard: state => state.newCard,
   uploadCard ({newCard}) {
     return {
