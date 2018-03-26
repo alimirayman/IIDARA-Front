@@ -122,6 +122,7 @@ export default {
     },
     addCard () {
       this.$store.dispatch('POST_CARD', this.form)
+      this.selectedFile = null
     }
   }
 }

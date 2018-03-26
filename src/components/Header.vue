@@ -2,13 +2,13 @@
   <div>
     <header class="shadow-inset">
       <div class="container">
-        <div class="d-flex justify-content-between">
-          <router-link tag="div" to="/" class="blackBox px-5 font-poiret pointer">
+        <div class="d-flex justify-content-around" :class="{'justify-content-between' : !user}">
+          <router-link tag="div" to="/home" class="blackBox px-5 font-poiret pointer">
             <h1>iidara</h1>
           </router-link>
-          <div class="blackBox dropdown" @click="menu = !menu">
+          <div class="blackBox dropdown" @click="menu = !menu" v-if="user">
             <div class="px-3 d-flex font-poiret pointer">
-              <img :src="user.avater" class="img-fluid circle my-2" alt="">
+              <img :src="user.avatar" class="img-fluid circle my-2" alt="">
               <div class=" ml-2 mt-3">
                 {{ user.name }} <br>
                 {{ user.role }}
@@ -22,7 +22,7 @@
                   >Profile</router-link>
                 <a class="dropdown-item" href="#">Start Working</a>
                 <!-- <div class="dropdown-divider"></div> -->
-                <a class="dropdown-item text-red" href="#">Logout</a>
+                <div class="dropdown-item text-red pointer" @click="logout">Logout</div>
               </div>
             </transition>
           </div>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 export default {
   data () {
     return {
@@ -44,6 +44,15 @@ export default {
     ...mapGetters({
       user: 'user'
     })
+  },
+  methods: {
+    ...mapActions([
+      'LOGOUT'
+    ]),
+    async logout () {
+      await this.LOGOUT()
+      this.$router.push({name: 'LoginPage'})
+    }
   }
 }
 </script>

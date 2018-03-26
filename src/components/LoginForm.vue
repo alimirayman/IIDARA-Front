@@ -10,7 +10,7 @@
           <div class="form-group">
               <input v-model="form.password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
           </div>
-          <button @click="submit" class="btn mt-2">Submit</button>
+          <button @click.prevent="submit" class="btn mt-2">Submit</button>
         </form>
       </div>
     </div>
@@ -28,8 +28,9 @@ export default {
     }
   },
   methods: {
-    submit () {
-      this.$store.dispatch('LOGIN', this.form)
+    async submit () {
+      await this.$store.dispatch('LOGIN', this.form)
+      this.$router.push({name: 'DashBoard'})
     }
   }
 }

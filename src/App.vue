@@ -14,15 +14,6 @@ export default {
   name: 'App',
   components: {
     heading
-  },
-  methods: {
-    async testBenchMock () {
-      // await this.$store.dispatch('LOGIN')
-      await this.$store.dispatch('GET_KARIGOR')
-    }
-  },
-  mounted () {
-    this.testBenchMock()
   }
 }
 </script>
