@@ -1,10 +1,9 @@
 import axios from '@/helpers/axios'
 import { CARD, UPLOAD_FILE } from '@/api'
 import image from '@/helpers/image'
-import {cards} from './cards'
 
 const state = {
-  cards: cards,
+  cards: [],
   newCard: {
     title: '',
     description: '',
@@ -27,6 +26,13 @@ const state = {
 }
 const getters = {
   cards: state => state.cards,
+  card (state) {
+    return (id) => {
+      return state.cards.find(el => {
+        return el.id === id
+      })
+    }
+  },
   newCard: state => state.newCard,
   uploadCard ({newCard}) {
     return {
@@ -78,6 +84,7 @@ const mutations = {
     state.newCard.karigor_id = payload.karigor_id
   },
   addCard (state, payload) {
+    payload.id = payload._id
     state.cards.push(payload)
   },
   addImage (state, {image, image64}) {
@@ -106,7 +113,7 @@ const actions = {
     commit('structNewCard', payload)
     try {
       let { data } = await axios.post(CARD, getters.uploadCard)
-      commit('addCard', data)
+      commit('addCard', data.data)
       commit('resetNewCard')
     } catch (err) {
       console.log(err)

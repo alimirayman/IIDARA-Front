@@ -3,7 +3,7 @@
     <header class="shadow-inset">
       <div class="container">
         <div class="d-flex justify-content-around" :class="{'justify-content-between' : !user}">
-          <router-link tag="div" to="/home" class="blackBox px-5 font-poiret pointer">
+          <router-link tag="div" :to="{name: 'DashBoard'}" class="blackBox px-5 font-poiret pointer">
             <h1>iidara</h1>
           </router-link>
           <div class="blackBox dropdown" @click="menu = !menu" v-if="user">
@@ -41,9 +41,9 @@ export default {
     }
   },
   computed: {
-    ...mapGetters({
-      user: 'user'
-    })
+    ...mapGetters([
+      'user'
+    ])
   },
   methods: {
     ...mapActions([

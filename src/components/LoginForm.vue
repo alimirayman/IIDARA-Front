@@ -1,7 +1,7 @@
 <template>
   <div class="form-container">
     <div class="display-4 mb-4 login-title">Login</div>
-    <div class="col-6 form">
+    <div class="col-md-8 col-lg-6   form">
       <div class="card shadow-large p-5 bg-light">
         <form>
           <div class="form-group">
