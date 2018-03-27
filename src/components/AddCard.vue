@@ -123,6 +123,8 @@ export default {
     addCard () {
       this.$store.dispatch('POST_CARD', this.form)
       this.selectedFile = null
+      this.$socket.emit('init')
+      // this.$socket.emit('cardChange')
     }
   }
 }

@@ -36,7 +36,7 @@ const actions = {
       let { data } = await axios.post(LOGIN, payload)
       commit('login', data)
     } else {
-      let { data } = await axios.get(KARIGOR_USER(localStorage.getItem('id')))
+      let { data } = await axios.get(KARIGOR_USER(localStorage.getItem('id') || ''))
       commit('login', data)
     }
   },

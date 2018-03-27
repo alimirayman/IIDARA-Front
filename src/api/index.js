@@ -5,6 +5,7 @@ const port = '8005'
 const version = '1'
 
 const api = `${root}:${port}/api/v${version}/`
+export const soc = `${root}:${port}`
 
 // Auth
 export const LOGIN = api + 'login'

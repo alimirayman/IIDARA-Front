@@ -3,6 +3,7 @@
 </template>
 
 <script>
+
 export default {
   methods: {
     async checkLogin () {
@@ -17,8 +18,17 @@ export default {
       }
     }
   },
+  sockets: {
+    connection () {
+      console.log('socket connected')
+    },
+    cardChange () {
+      this.$store.dispatch('GET_CARDS', [0, 1, 2])
+    }
+  },
   created () {
-    this.checkLogin()
+    let vm = this
+    vm.checkLogin()
   }
 }
 </script>

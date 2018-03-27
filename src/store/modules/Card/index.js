@@ -84,6 +84,7 @@ const mutations = {
     state.newCard.karigor_id = payload.karigor_id
   },
   addCard (state, payload) {
+    payload.id = payload._id
     state.cards.push(payload)
   },
   addImage (state, {image, image64}) {
@@ -112,7 +113,7 @@ const actions = {
     commit('structNewCard', payload)
     try {
       let { data } = await axios.post(CARD, getters.uploadCard)
-      commit('addCard', data)
+      commit('addCard', data.data)
       commit('resetNewCard')
     } catch (err) {
       console.log(err)
